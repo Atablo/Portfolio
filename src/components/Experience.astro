@@ -1,0 +1,23 @@
+
+---
+import ExperienceItem from "./ExperienceItem.astro"
+
+const EXPERIENCE=[
+{   
+    "initDate":"April 2024",
+    "endDate":"June 2024",
+    "title": "Internship as a Web Applications Developer in the R&D Department.",
+    "description":"I participated in the development of a computer-aided maintenance management system (CMMS) using Angular and APIs, improving the efficiency of the system by implementing PrimeNG components and enhancing the user experience.",
+    "company": "LM Automatismos",
+    
+}]
+---
+<ol class="relative border-s border-gray-200 dark:border-gray-700 ml-3">
+    {EXPERIENCE.map(experience =>
+        <li class="mb-10 ms-4">
+            <ExperienceItem {...experience}></ExperienceItem>
+        </li>
+     ) }                  
+    
+</ol>
+

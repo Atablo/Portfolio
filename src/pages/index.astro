@@ -1,11 +1,67 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Header from '../components/Header.astro';
+import Badge from '../components/Badge.astro';
+import Emoji from 'astro-emoji'
+import LinkedIn from '../icons/LinkedIn.astro';
+import SocialPill from '../components/SocialPill.astro';
+import GitHub from '../icons/GitHub.astro';
+import Mail from '../icons/Mail.astro';
+import Experience from '../components/Experience.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+import Suitcase from '../icons/Suitcase.astro';
+import Code from '../icons/Code.astro';
+import Projects from '../components/Projects.astro';
+
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<Card title="Hello, World!" body='Hey' href=''></Card>
+<Layout title="Pablo | Portfolio - Programmer & Web Developer"
+	description="Hire Pablo to create your web or mobile application.Web Developer. Specialized in creating unique applications and interfaces.">
+	<main class="px-4">
+		<SectionContainer class="pt-32 pb-24">
+			<img src="../../img/profilePic.png" alt="Foto de Pablo" class="rounded-full size-12 mb-3"> 
+			<h1 class="text-2xl lg:text-4xl text-white gap-x-4 font-bold flex flex-row lg:pb-4 pb-6">Hi! <Emoji symbol='👋' label='greetings'/>I'm Pablo 
+				<div class="flex items-center">
+					<a href="https://www.linkedin.com/in/pabloagdb/" class="flex justify-items-center">
+						<Badge>Available to hire!</Badge>
+					</a>
+				</div>
+			</h1>
+			<h2 class="text-xl lg:text-2xl opacity-90 text-wrap text-justify max-w-[800px]">
+				<span class="text-yellow-300">+2 years of experience. </span>
+				
+				<span class="text-green-300">Web developer 👩‍💻 passionate primarily about FrontEnd, especially with Angular and React.</span>
+			<span></span>Enthusiast of building scalable and efficient web applications.
+			<span class="opacity-70">Based in Toledo, Spain 🇪🇸.</span></h2>
+			<nav class="flex gap-4 my-4 flex-wrap justify-center">
+				
+					<SocialPill href="https://www.linkedin.com/in/pabloagdb/">
+						<LinkedIn class="size-5 md:size-6"/>LinkedIn
+					</SocialPill>
+					<SocialPill href="https://github.com/Atablo">
+						<GitHub class="size-5 md:size-6"/>GitHub
+					</SocialPill>
+					<SocialPill href="mailto:pabloagb@outlook.es">
+						<Mail class="size-5 md:size-6"/>pabloagb@outlook.es
+					</SocialPill>
+					
+			</nav>
+		
+		</SectionContainer>
+		<SectionContainer id="experience">
+
+			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center"><Suitcase class="size-7 "/>Work experience</h2>
+			<Experience/>
+		</SectionContainer>
+
+		<SectionContainer id="projects">
+
+			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center"><Code class="size-7 "/>Projects</h2>
+			<Projects/>
+		
+		</SectionContainer>
+		
 	</main>
 </Layout>
 
