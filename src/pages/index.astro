@@ -13,6 +13,8 @@ import SectionContainer from '../components/SectionContainer.astro';
 import Suitcase from '../icons/Suitcase.astro';
 import Code from '../icons/Code.astro';
 import Projects from '../components/Projects.astro';
+import About from '../components/About.astro';
+import PersonIcon from '../icons/PersonIcon.astro';
 
 ---
 
@@ -20,18 +22,20 @@ import Projects from '../components/Projects.astro';
 	description="Hire Pablo to create your web or mobile application.Web Developer. Specialized in creating unique applications and interfaces.">
 	<main class="px-4">
 		<SectionContainer class="pt-32 pb-24">
-			<img src="../../img/profilePic.png" alt="Foto de Pablo" class="rounded-full size-12 mb-3"> 
+			
+			<div class="flex items-center gap-x-6">
+				<img src="../../img/profilePic.webp" alt="Foto de Pablo" class="rounded-full size-16 mb-3"> 
+				<a href="https://www.linkedin.com/in/pabloagdb/" class="flex justify-items-center">
+					<Badge>Available to hire!</Badge>
+				</a>
+			</div>
 			<h1 class="text-2xl lg:text-4xl text-gray-800 dark:text-white gap-x-4 font-bold flex flex-row lg:pb-4  pb-6">Hi! <Emoji symbol='👋' label='greetings'/>I'm Pablo 
-				<div class="flex items-center">
-					<a href="https://www.linkedin.com/in/pabloagdb/" class="flex justify-items-center">
-						<Badge>Available to hire!</Badge>
-					</a>
-				</div>
+				
 			</h1>
 			<h2 class="text-xl lg:text-2xl opacity-90 text-wrap text-justify max-w-[800px]">
-				<span class="dark:text-yellow-300 text-orange-400">+2 years of experience. </span>
+				<!-- <span class="dark:text-yellow-300 text-orange-400">+2 years of experience. </span> -->
 				
-				<span class="dark:text-green-300 text-green-500">Web developer 👩‍💻 passionate primarily about FrontEnd, especially with Angular and React.</span>
+				<span class="dark:text-yellow-300 text-orange-400">Web developer</span>👩‍💻<span class="dark:text-green-300 text-green-500"> passionate primarily about FrontEnd, especially with Angular and React.</span>
 			<span></span>Enthusiast of building scalable and efficient web applications.
 			<span class="opacity-70">Based in Toledo, Spain 🇪🇸.</span></h2>
 			<nav class="flex gap-4 my-4 flex-wrap justify-center">
@@ -62,8 +66,8 @@ import Projects from '../components/Projects.astro';
 		
 		</SectionContainer>
 		<SectionContainer>
-			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center mt-24">About me<h2>
-			
+			<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center"><PersonIcon class="size-7"/>About me<h2>
+			<About></About>
 		</SectionContainer>
 	</main>
 </Layout>

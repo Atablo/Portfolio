@@ -44,7 +44,7 @@ const TAGS={
             color: "Red",
         },
         REACT:{
-            name:'React',
+            name:'React JS',
             class: "bg-transparent border-solid border-2 border-blue-600",
             icon: ReactIcon,
             color: "Blue",
@@ -63,14 +63,15 @@ const PROJECTS = [
         tags: [TAGS.JAVASCRIPT,TAGS.HTML5,TAGS.CSS,TAGS.APIS,TAGS.FIGMA],
     },
     {
-        title: "TheMealDBApp React - The main food database now with upgrades!",
+        
+        title: "TheMealDBApp React - The main food database redesigned and upgraded!",
         description:
 
         "TheMealDB React App is an upgraded version of the original, offering a more dynamic, responsive experience with React. It features enhanced UI, faster load times, and improved recipe categorization via TheMealDB API. This evolution focuses on advanced API integration and seamless cross-device performance.",
         link: "https://atablo.github.io/TheMealDB-React/",
         gitHub: "https://github.com/Atablo/TheMealDB-React",
         image: "../../../public/img/TheMealsDB-React.webp",  // Replace with an actual image URL
-        tags: [TAGS.REACT,TAGS.JAVASCRIPT,TAGS.HTML5,TAGS.CSS,TAGS.APIS,TAGS.FIGMA],
+        tags: [TAGS.REACT,TAGS.JAVASCRIPT,TAGS.HTML5,TAGS.CSS,TAGS.APIS],
     },
 ];
 ---
@@ -87,7 +88,7 @@ const PROJECTS = [
     <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
       {title}
     </h3>
-    <div class="flex flex-wrap mt-2">
+    <div class="flex flex-wrap mt-4">
       <ul class="flex flex-row mb-2 gap-x-2">
           {tags.map((tag) => (
             <li>
@@ -101,7 +102,7 @@ const PROJECTS = [
           ))}
         </ul>
 
-      <div class="mt-2 text-sm text-gray-700 dark:text-gray-400">{description}</div>
+      <div class="mt-2 text-sm text-gray-700 text-balance dark:text-gray-400">{description}</div>
       <footer class="flex items-end justify-start mt-4 gap-x-4">
           {gitHub && (
             <LinkButton href={gitHub}>
