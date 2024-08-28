@@ -3,56 +3,123 @@ import { string } from "astro/zod";
 import JavaScriptIcon from '../icons/JavaScriptIcon.astro';
 import HTML5 from '../icons/HTML5Icon.astro';
 import CSS from '../icons/CSSIcon.astro'
+import APIIcon from '../icons/APIIcon.astro'
+import FigmaIcon from '../icons/Figma.astro'
+import LinkButton from "./LinkButton.astro";
+import GitHub from "../icons/GitHub.astro";
+import Link from "../icons/Link.astro";
+import ReactIcon from "../icons/ReactIcon.astro";
 // Import any needed components or variables here
 const TAGS={
     JAVASCRIPT:
         {
             name:'JavaScript',
-            class: "bg-yellow-200", 
+            class: "bg-transparent border-solid border-2 border-yellow-300", 
             icon: JavaScriptIcon,
-            color: "Yellow",
+            color: "yellow",
         },
         HTML5:
         {
             name:'HTML5',
-            class: "bg-orange-200", 
+            class: `bg-transparent border-solid border-2 border-orange-300`, 
             icon: HTML5,
-            color: "Orange",
+            color: "orange",
         },
         CSS:{
             name:'CSS',
-            class: "bg-blue-200",
+            class: "bg-transparent border-solid border-2 border-blue-300",
             icon: CSS,
             color: "Blue",
+        },
+        APIS:{
+            name:"API's",
+            class: "bg-transparent border-solid border-2 border-zinc-300",
+            icon: APIIcon,
+            color: "White",
+        },
+        FIGMA:{
+            name:'Figma',
+            class: "bg-transparent border-solid border-2 border-red-300",
+            icon: FigmaIcon,
+            color: "Red",
+        },
+        REACT:{
+            name:'React',
+            class: "bg-transparent border-solid border-2 border-blue-600",
+            icon: ReactIcon,
+            color: "Blue",
         }
-    
-
     
 }
 const PROJECTS = [
     {
         title: "TheMealDBApp JS - The main food database",
         description:
-            "It is an interactive web application built in JavaScript that allows users to browse and search a wide variety of recipes using TheMealDB API. It organizes recipes by categories such as food types, ingredients and culinary areas, and allows searches by country, category and tags. Developed in collaboration with classmates in a Web Development course, it focused on external API integration and user interface design.",
+
+        "TheMealDBApp JS is a web app built with JavaScript that lets users search and explore recipes via TheMealDB API. It categorizes recipes by type, ingredients, and region. Developed in a web development course, it focuses on API integration and UI design.",
         link: "https://atablo.github.io/TheMealDBApp/",
         gitHub: "https://github.com/Atablo/TheMealDBApp",
         image: "../../../public/img/TheMealDB-JS.webp",  // Replace with an actual image URL
-        tags: [TAGS.JAVASCRIPT,TAGS.HTML5,TAGS.CSS/* "CSS", "API Rest", "Figma" */],
+        tags: [TAGS.JAVASCRIPT,TAGS.HTML5,TAGS.CSS,TAGS.APIS,TAGS.FIGMA],
+    },
+    {
+        title: "TheMealDBApp React - The main food database now with upgrades!",
+        description:
+
+        "TheMealDB React App is an upgraded version of the original, offering a more dynamic, responsive experience with React. It features enhanced UI, faster load times, and improved recipe categorization via TheMealDB API. This evolution focuses on advanced API integration and seamless cross-device performance.",
+        link: "https://atablo.github.io/TheMealDB-React/",
+        gitHub: "https://github.com/Atablo/TheMealDB-React",
+        image: "../../../public/img/TheMealsDB-React.webp",  // Replace with an actual image URL
+        tags: [TAGS.REACT,TAGS.JAVASCRIPT,TAGS.HTML5,TAGS.CSS,TAGS.APIS,TAGS.FIGMA],
     },
 ];
 ---
-<div class="flex flex-row">
-    {PROJECTS.map(({ title, description, tags, image }) => (
-    <article>
-        <h3 class="text-2xl text-green-600 font-semibold mb-2">{title}</h3>
-        <p class="text-base mb-4 text-pretty">{description}</p>
-        <ul>
-            {tags.map(tag => (
-                <li><tag.icon class="size-10"/>{tag.name}</li>
-            ))}
+<div class="flex flex-col " id="projects">
+    {PROJECTS.map(({ title, description, tags, image,gitHub,link }) => (
+    <article class="flex flex-col space-x-4 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 justify-stretch mb-12">
+  <div class="w-full md:w-1/2">
+    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl h-full overflow-clip rounded-xl sm:rounded-xl  lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+      <img alt="Image from the website" class="md:hover:-translate-y-1 md:hover:shadow-2xl object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:hover:scale-105" loading="lazy" src={image} />
+    </div>
+  </div>
+
+  <div class="w-full md:w-1/2 md:max-w-lg">
+    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+      {title}
+    </h3>
+    <div class="flex flex-wrap mt-2">
+      <ul class="flex flex-row mb-2 gap-x-2">
+          {tags.map((tag) => (
+            <li>
+              <span
+                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+              >
+                <tag.icon class="size-4" />
+                {tag.name}
+              </span>
+            </li>
+          ))}
         </ul>
-        <img src={image} class="rounded shadow-2xl shadow-white/20" alt={`Screenshot from the project ${title}`} />
-    </article>
+
+      <div class="mt-2 text-sm text-gray-700 dark:text-gray-400">{description}</div>
+      <footer class="flex items-end justify-start mt-4 gap-x-4">
+          {gitHub && (
+            <LinkButton href={gitHub}>
+              <GitHub class="size-6" />
+              Code
+              
+            </LinkButton>
+          )}
+          {link && (
+            <LinkButton href={link}>
+              <Link class="size-4" />
+              Preview
+            </LinkButton>
+          )}
+        </footer>
+    </div>
+  </div>
+</article>
 ))}
 
 </div>
