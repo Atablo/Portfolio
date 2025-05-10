@@ -1,127 +1,171 @@
 ---
 import { string } from "astro/zod";
-import JavaScriptIcon from '../icons/JavaScriptIcon.astro';
-import HTML5 from '../icons/HTML5Icon.astro';
-import CSS from '../icons/CSSIcon.astro'
-import APIIcon from '../icons/APIIcon.astro'
-import FigmaIcon from '../icons/Figma.astro'
+import JavaScriptIcon from "../icons/JavaScriptIcon.astro";
+import HTML5 from "../icons/HTML5Icon.astro";
+import CSS from "../icons/CSSIcon.astro";
+import APIIcon from "../icons/APIIcon.astro";
+import FigmaIcon from "../icons/Figma.astro";
 import LinkButton from "./LinkButton.astro";
 import GitHub from "../icons/GitHub.astro";
 import Link from "../icons/Link.astro";
 import ReactIcon from "../icons/ReactIcon.astro";
+import AstroIcon from "../icons/AstroIcon.astro";
+import TypeScriptIcon from "../icons/TypeScriptIcon.astro";
+import BootStrapIcon from "../icons/BootstrapIcon.astro"
 // Import any needed components or variables here
-const TAGS={
-    JAVASCRIPT:
-        {
-            name:'JavaScript',
-            class: "bg-transparent border-solid border-2 border-yellow-300", 
-            icon: JavaScriptIcon,
-            color: "yellow",
-        },
-        HTML5:
-        {
-            name:'HTML5',
-            class: `bg-transparent border-solid border-2 border-orange-300`, 
-            icon: HTML5,
-            color: "orange",
-        },
-        CSS:{
-            name:'CSS',
-            class: "bg-transparent border-solid border-2 border-blue-300",
-            icon: CSS,
-            color: "Blue",
-        },
-        APIS:{
-            name:"API's",
-            class: "bg-transparent border-solid border-2 border-zinc-300",
-            icon: APIIcon,
-            color: "White",
-        },
-        FIGMA:{
-            name:'Figma',
-            class: "bg-transparent border-solid border-2 border-red-300",
-            icon: FigmaIcon,
-            color: "Red",
-        },
-        REACT:{
-            name:'React JS',
-            class: "bg-transparent border-solid border-2 border-blue-600",
-            icon: ReactIcon,
-            color: "Blue",
-        }
-    
-}
+const TAGS = {
+  JAVASCRIPT: {
+    name: "JavaScript",
+    class: "bg-transparent border-solid border-2 border-yellow-300",
+    icon: JavaScriptIcon,
+    color: "yellow",
+  },
+  TYPESCRIPT: {
+    name: "TypeScript",
+    class: "bg-transparent border-solid border-2 border-blue-300",
+    icon: TypeScriptIcon,
+    color: "Blue",
+  },
+  HTML5: {
+    name: "HTML5",
+    class: `bg-transparent border-solid border-2 border-orange-300`,
+    icon: HTML5,
+    color: "orange",
+  },
+  CSS: {
+    name: "CSS",
+    class: "bg-transparent border-solid border-2 border-blue-300",
+    icon: CSS,
+    color: "Blue",
+  },
+  BOOTSTRAP: {
+    name: "Bootstrap",
+    class: "bg-transparent border-solid border-2 border-purple-300",
+    icon: BootStrapIcon,
+    color: "Puple",
+  },
+  APIS: {
+    name: "API's",
+    class: "bg-transparent border-solid border-2 border-zinc-300",
+    icon: APIIcon,
+    color: "White",
+  },
+  FIGMA: {
+    name: "Figma",
+    class: "bg-transparent border-solid border-2 border-red-300",
+    icon: FigmaIcon,
+    color: "Red",
+  },
+  REACT: {
+    name: "React JS",
+    class: "bg-transparent border-solid border-2 border-blue-600",
+    icon: ReactIcon,
+    color: "Blue",
+  },
+  ASTRO:{
+    name: "Astro",
+    class: "bg-transparent border-solid border-2 border-white-200",
+    icon: AstroIcon,
+    color: "White",
+  }
+};
 const PROJECTS = [
-    {
-        title: "TheMealDBApp JS - The main food database",
-        description:
 
-        "TheMealDBApp JS is a web app built with JavaScript that lets users search and explore recipes via TheMealDB API. It categorizes recipes by type, ingredients, and region. Developed in a web development course, it focuses on API integration and UI design.",
-        link: "https://atablo.github.io/TheMealDBApp/",
-        gitHub: "https://github.com/Atablo/TheMealDBApp",
-        image: "../../img/TheMealDB-JS.webp",  // Replace with an actual image URL
-        tags: [TAGS.JAVASCRIPT,TAGS.HTML5,TAGS.CSS,TAGS.APIS,TAGS.FIGMA],
-    },
-    {
-        
-        title: "TheMealDBApp React - The main food database redesigned and upgraded!",
-        description:
-
-        "TheMealDB React App is an upgraded version of the original, offering a more dynamic, responsive experience with React. It features enhanced UI, faster load times, and improved recipe categorization via TheMealDB API. This evolution focuses on advanced API integration and seamless cross-device performance.",
-        link: "https://atablo.github.io/TheMealDB-React/",
-        gitHub: "https://github.com/Atablo/TheMealDB-React",
-        image: "../../img/TheMealsDB-React.webp",  // Replace with an actual image URL
-        tags: [TAGS.REACT,TAGS.JAVASCRIPT,TAGS.HTML5,TAGS.CSS,TAGS.APIS],
-    },
+  {
+    title:
+      "EAPA (UCLM Degree website)",
+    description:
+      "This website provides information on the UCLM specialist degree in supporting autistic individuals, with a transdisciplinary and inclusive approach and an attractive design. It uses Astro for performance, Bootstrap for responsiveness and accessibility from anywhere and for everyone.This website follows the same design idea as ECAAT. Developed at La Fábrica de Palabras.",
+    link: "https://atablo.github.io/TheMealDB-React/",
+    gitHub: "https://github.com/Atablo/TheMealDB-React",
+    image: "../../img/TheMealsDB-React.webp", // Replace with an actual image URL
+    tags: [TAGS.ASTRO, TAGS.TYPESCRIPT, TAGS.HTML5, TAGS.CSS, TAGS.BOOTSTRAP],
+  },
+  {
+    title:
+      "ECAAT (UCLM Degree website)",
+    description:
+      "This website delivers details on the UCLM scpecialist degree in Augmentative and Alternaive Communication, offering a user-friendly and inclusive layout with engaging visuals. It leverages Astro for speed, Bootstrap for a seamless experience across all devices and with any kind of user.It also includes some visual effects wich improve UX and UI. Developed at La Fábrica de Palabras.",
+    link: "https://atablo.github.io/TheMealDB-React/",
+    gitHub: "https://github.com/Atablo/TheMealDB-React",
+    image: "../../img/TheMealsDB-React.webp", // Replace with an actual image URL
+    tags: [TAGS.ASTRO, TAGS.TYPESCRIPT, TAGS.HTML5, TAGS.CSS, TAGS.BOOTSTRAP],
+  },
+  {
+    title:
+      "TheMealDBApp React - The main food database redesigned and upgraded!",
+    description:
+      "TheMealDB React App is an upgraded version of the original, offering a more dynamic, responsive experience with React. It features enhanced UI, faster load times, and improved recipe categorization via TheMealDB API. This evolution focuses on advanced API integration and seamless cross-device performance.",
+    link: "https://atablo.github.io/TheMealDB-React/",
+    gitHub: "https://github.com/Atablo/TheMealDB-React",
+    image: "../../img/TheMealsDB-React.webp", // Replace with an actual image URL
+    tags: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.HTML5, TAGS.CSS, TAGS.APIS],
+  },
+  {
+    title: "TheMealDBApp JS - The main food database",
+    description:
+      "TheMealDBApp JS is a web app built with JavaScript that lets users search and explore recipes via TheMealDB API. It categorizes recipes by type, ingredients, and region. Developed in a web development course, it focuses on API integration and UI design.",
+    link: "https://atablo.github.io/TheMealDBApp/",
+    gitHub: "https://github.com/Atablo/TheMealDBApp",
+    image: "../../img/TheMealDB-JS.webp", // Replace with an actual image URL
+    tags: [TAGS.JAVASCRIPT, TAGS.HTML5, TAGS.CSS, TAGS.APIS, TAGS.FIGMA],
+  },
 ];
 ---
-<div class="flex flex-col " id="projects">
-    {PROJECTS.map(({ title, description, tags, image,gitHub,link }) => (
-    <article class="flex flex-col space-x-4 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 justify-stretch mb-12">
-  <div class="w-full md:w-1/2">
-    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl h-full overflow-clip rounded-xl sm:rounded-xl  lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Image from the website" class="md:hover:-translate-y-1 md:hover:shadow-2xl object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:hover:scale-105" loading="lazy" src={image} />
-    </div>
-  </div>
 
-  <div class="w-full md:w-1/2 md:max-w-lg">
-    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-      {title}
-    </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2 flex-wrap">
-          {tags.map((tag) => (
-            <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 mt-2`}
-              >
-                <tag.icon class="size-4" />
-                {tag.name}
-              </span>
-            </li>
-          ))}
-        </ul>
+<div class="flex flex-col" id="projects">
+  {
+    PROJECTS.map(({ title, description, tags, image, gitHub, link }) => (
+      <article class="flex flex-col space-x-4 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 justify-stretch mb-12">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl h-full overflow-clip rounded-xl sm:rounded-xl  lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img
+              alt="Image from the website"
+              class="md:hover:-translate-y-1 md:hover:shadow-2xl object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
+          </div>
+        </div>
 
-      <div class="mt-2 text-sm text-gray-700 text-balance dark:text-gray-400">{description}</div>
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
-          {gitHub && (
-            <LinkButton href={gitHub}>
-              <GitHub class="size-6" />
-              Code
-              
-            </LinkButton>
-          )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
-          )}
-        </footer>
-    </div>
-  </div>
-</article>
-))}
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2">
+            <ul class="flex flex-row mb-2 gap-x-2 flex-wrap">
+              {tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 mt-2`}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
+            <div class="mt-2 text-sm text-gray-700 text-balance dark:text-gray-400">
+              {description}
+            </div>
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {gitHub && (
+                <LinkButton href={gitHub}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </div>
+      </article>
+    ))
+  }
 </div>
-   

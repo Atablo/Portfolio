@@ -4,13 +4,22 @@ import ExperienceItem from "./ExperienceItem.astro"
 
 const EXPERIENCE=[
 {   
+    "initDate":"October 2024",
+    "endDate":"Present",
+    "title": "Web Developer focused on accessibility and educational platforms",
+    "description":"Currently contributing to the development and maintenance of accessible websites such as escuelaac.com and weadapta.org. I also develop content-driven pages for the University of Castilla-La Mancha (EAPA and ECAAT degrees) and work with CMS technologies. My role includes customizing AAC tools like Grid 3, Proloquo2Go, and Verbo by Eneso, as well as adapting assistive hardware for various needs.",
+    "company": "La Fábrica de Palabras",
+    
+},
+{   
     "initDate":"April 2024",
     "endDate":"June 2024",
     "title": "Internship as a Web Applications Developer in the R&D Department.",
     "description":"I participated in the development of a computer-aided maintenance management system (CMMS) using Angular and APIs, improving the efficiency of the system by implementing PrimeNG components and enhancing the user experience.",
     "company": "LM Automatismos",
     
-}]
+}
+]
 ---
 <ol class="relative border-s border-amber-600 dark:border-amber-200 ml-3">
     {EXPERIENCE.map(experience =>
