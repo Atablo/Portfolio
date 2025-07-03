@@ -11,7 +11,7 @@ import Link from "../icons/Link.astro";
 import ReactIcon from "../icons/ReactIcon.astro";
 import AstroIcon from "../icons/AstroIcon.astro";
 import TypeScriptIcon from "../icons/TypeScriptIcon.astro";
-import BootStrapIcon from "../icons/BootstrapIcon.astro"
+import BootStrapIcon from "../icons/BootstrapIcon.astro";
 // Import any needed components or variables here
 const TAGS = {
   JAVASCRIPT: {
@@ -62,33 +62,34 @@ const TAGS = {
     icon: ReactIcon,
     color: "Blue",
   },
-  ASTRO:{
+  ASTRO: {
     name: "Astro",
     class: "bg-transparent border-solid border-2 border-white-200",
     icon: AstroIcon,
     color: "White",
-  }
+  },
 };
 const PROJECTS = [
-
   {
-    title:
-      "EAPA (UCLM Degree website)",
+    title: "EAPA (UCLM Degree website)",
     description:
-      "This website provides information on the UCLM specialist degree in supporting autistic individuals, with a transdisciplinary and inclusive approach and an attractive design. It uses Astro for performance, Bootstrap for responsiveness and accessibility from anywhere and for everyone.This website follows the same design idea as ECAAT. Developed at La Fábrica de Palabras.",
+      `This website provides information on the UCLM specialist degree in supporting autistic individuals, with a transdisciplinary and inclusive approach and an attractive design. It uses Astro for performance, Bootstrap for responsiveness and accessibility from anywhere and for everyone.This website follows the same design idea as ECAAT. Developed at La Fábrica de Palabras. 
+      
+      Unfortunately, the source code is private as it is a company-owned project. :(`,
     link: "https://autismo-uclm.github.io/",
-    gitHub: "https://github.com/autismo-uclm/autismo-uclm.github.io",
+    gitHub: "",
     image: "../../img/EAPAImage.png", // Replace with an actual image URL
     tags: [TAGS.ASTRO, TAGS.TYPESCRIPT, TAGS.HTML5, TAGS.CSS, TAGS.BOOTSTRAP],
   },
   {
-    title:
-      "ECAAT (UCLM Degree website)",
+    title: "ECAAT (UCLM Degree website)",
     description:
-      "This website delivers details on the UCLM scpecialist degree in Augmentative and Alternaive Communication, offering a user-friendly and inclusive layout with engaging visuals. It leverages Astro for speed, Bootstrap for a seamless experience across all devices and with any kind of user.It also includes some visual effects wich improve UX and UI. Developed at La Fábrica de Palabras.",
+      `This website delivers details on the UCLM scpecialist degree in Augmentative and Alternaive Communication, offering a user-friendly and inclusive layout with engaging visuals. It leverages Astro for speed, Bootstrap for a seamless experience across all devices and with any kind of user.It also includes some visual effects wich improve UX and UI. Developed at La Fábrica de Palabras.
+      
+      Unfortunately, the source code is private as it is a company-owned project. :(`,
     link: "https://caa-uclm.github.io/",
-    gitHub: "https://github.com/caa-uclm/caa-uclm.github.io",
-    image: "../../img/ECAATImage.png", // Replace with an actual image URL
+    gitHub: "",
+    image: "../../img/ECAATImage.png", 
     tags: [TAGS.ASTRO, TAGS.TYPESCRIPT, TAGS.HTML5, TAGS.CSS, TAGS.BOOTSTRAP],
   },
   {
@@ -98,7 +99,7 @@ const PROJECTS = [
       "TheMealDB React App is an upgraded version of the original, offering a more dynamic, responsive experience with React. It features enhanced UI, faster load times, and improved recipe categorization via TheMealDB API. This evolution focuses on advanced API integration and seamless cross-device performance.",
     link: "https://atablo.github.io/TheMealDB-React/",
     gitHub: "https://github.com/Atablo/TheMealDB-React",
-    image: "../../img/TheMealsDB-React.webp", // Replace with an actual image URL
+    image: "../../img/TheMealsDB-React.webp", 
     tags: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.HTML5, TAGS.CSS, TAGS.APIS],
   },
   {
@@ -107,7 +108,7 @@ const PROJECTS = [
       "TheMealDBApp JS is a web app built with JavaScript that lets users search and explore recipes via TheMealDB API. It categorizes recipes by type, ingredients, and region. Developed in a web development course, it focuses on API integration and UI design.",
     link: "https://atablo.github.io/TheMealDBApp/",
     gitHub: "https://github.com/Atablo/TheMealDBApp",
-    image: "../../img/TheMealDB-JS.webp", // Replace with an actual image URL
+    image: "../../img/TheMealDB-JS.webp", 
     tags: [TAGS.JAVASCRIPT, TAGS.HTML5, TAGS.CSS, TAGS.APIS, TAGS.FIGMA],
   },
 ];
@@ -146,16 +147,27 @@ const PROJECTS = [
               ))}
             </ul>
 
-            <div class="mt-2 text-sm text-gray-700 text-balance dark:text-gray-400">
+            <div class="mt-2 text-sm text-gray-700 text-balance dark:text-gray-400 whitespace-pre-line">
               {description}
             </div>
             <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {gitHub && (
-                <LinkButton href={gitHub}>
-                  <GitHub class="size-6" />
-                  Code
-                </LinkButton>
-              )}
+                {gitHub ? (
+    <LinkButton href={gitHub}>
+      <GitHub class="size-6" />
+      Code
+    </LinkButton>
+  ) : (
+    <div class="flex items-center gap-1 text-sm">
+      <div class="relative cursor-not-allowed px-3 py-2 border border-gray-700 rounded-md opacity-40 flex items-center">
+        <div class="relative group">
+          <GitHub class="size-6" />
+          
+        </div>
+        <span class="ml-2">Code</span>
+      </div>
+    </div>
+  )}
+
               {link && (
                 <LinkButton href={link}>
                   <Link class="size-4" />
