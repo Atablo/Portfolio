@@ -1,32 +1,40 @@
-
 ---
-import ExperienceItem from "./ExperienceItem.astro"
+import ExperienceItem from "./ExperienceItem.astro";
 
-const EXPERIENCE=[
-{   
-    "initDate":"October 2024",
-    "endDate":"May 2025",
-    "title": "Web Developer focused on accessibility and educational platforms",
-    "description":"Developed and maintained accessible websites such as weadapta.org and escuelaac.com using CMS platforms, primarily WordPress with Elementor. Additionally, created content-driven pages for the University of Castilla-La Mancha's EAPA and ECAAT degree programs. My role also involved customizing augmentative and alternative communication (AAC) tools like Grid 3, Proloquo2Go, and Verbo by Eneso, as well as adapting assistive hardware to meet diverse user needs.",
-    "company": "La Fábrica de Palabras",
-    
-},
-{   
-    "initDate":"April 2024",
-    "endDate":"June 2024",
-    "title": "Internship as a Web Applications Developer in the R&D Department.",
-    "description":"I participated in the development of a computer-aided maintenance management system (CMMS) using Angular and APIs, improving the efficiency of the system by implementing PrimeNG components and enhancing the user experience.",
-    "company": "LM Automatismos",
-    
-}
-]
+const EXPERIENCE = [
+  {
+    initDate: "March 2026",
+    endDate: "Present",
+    title: "Consultant",
+    description:
+      "I manage and resolve incidents for public-sector software, working with SAINT and investigating issues across different environments. When necessary, I also work with databases to analyse and resolve incidents.",
+    company: "M3 SLU",
+  },
+  {
+    initDate: "October 2024",
+    endDate: "May 2025",
+    title: "Web Developer focused on accessibility and educational platforms",
+    description:
+      "Developed and maintained accessible websites such as weadapta.org and escuelaac.com using WordPress and Elementor. I also worked on content-driven websites for the University of Castilla-La Mancha's EAPA and ECAAT programmes, as well as customising augmentative and alternative communication (AAC) tools and adapting assistive hardware to different user needs.",
+    company: "La Fábrica de Palabras",
+  },
+  {
+    initDate: "April 2024",
+    endDate: "June 2024",
+    title: "Internship as a Web Applications Developer in the R&D Department.",
+    description:
+      "Frontend development for a computerised maintenance management system (CMMS) for industrial and logistics environments. I worked with Angular 17, TypeScript and PrimeNG, integrating backend services through APIs documented with Swagger and developing the application's statistics section.",
+    company: "LM Automatismos",
+  },
+];
 ---
+
 <ol class="relative border-s border-amber-600 dark:border-amber-200 ml-3">
-    {EXPERIENCE.map(experience =>
-        <li class="mb-10 ms-4">
-            <ExperienceItem {...experience}></ExperienceItem>
-        </li>
-     ) }                  
-    
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
 </ol>
-
