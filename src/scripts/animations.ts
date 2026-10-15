@@ -16,9 +16,10 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
 // Los plugins hay que registrarlos una vez antes de usarlos.
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 // matchMedia ejecuta las animaciones SOLO si el usuario no ha pedido
 // "reducir movimiento" en su sistema operativo (accesibilidad). Si cambia la
@@ -42,8 +43,37 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
   });
 
   // ---------------------------------------------------------------------------
+  // 1b. Luz de fondo que cambia de color según la sección
+  // ---------------------------------------------------------------------------
+  // Cada sección tiene un color (sacado de la paleta de la web). Cuando una
+  // sección cruza el centro de la pantalla, la luz de fondo se funde a su color.
+  const glowColors: [string, string][] = [
+    ["#hero", "rgba(120, 119, 198, 0.2)"], // violeta (el del fondo original)
+    ["#experience", "rgba(245, 158, 11, 0.18)"], // ámbar, como la línea del timeline
+    ["#projects", "rgba(16, 185, 129, 0.18)"], // verde esmeralda
+    ["#about", "rgba(56, 189, 248, 0.18)"], // azul cielo
+  ];
+
+  glowColors.forEach(([section, color]) => {
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top center",
+      end: "bottom center",
+      // onToggle salta al entrar o salir de la zona; solo actuamos al entrar
+      // (bajando o subiendo). overwrite corta el fundido anterior si lo hay.
+      onToggle: (self) =>
+        self.isActive && gsap.to("#bg-glow", { "--glow": color, duration: 1, overwrite: "auto" }),
+    });
+  });
+
+  // ---------------------------------------------------------------------------
   // 2. Entrada del hero (lo primero que ves al cargar)
   // ---------------------------------------------------------------------------
+  // SplitText trocea el saludo: envuelve cada letra en su propio elemento
+  // para poder animarlas por separado. Añade un aria-label con el texto
+  // completo, así los lectores de pantalla siguen leyendo "Hi! I'm Pablo".
+  const greeting = SplitText.create("#hero h1", { type: "chars" });
+
   // Un timeline reproduce sus pasos en orden. "defaults" se aplica a todos.
   const hero = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.8 } });
 
@@ -56,14 +86,18 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     // El badge entra desde la derecha. "<0.2" = empieza 0.2s después
     // del INICIO del paso anterior (se solapan, se siente más fluido).
     .from("#hero > div > a", { x: 40, autoAlpha: 0 }, "<0.2")
-    // El saludo sube desde abajo.
-    .from("#hero h1", { y: 30, autoAlpha: 0 }, "-=0.4")
+    // Cada letra del saludo cae desde arriba girando un poco, una tras otra.
+    .from(greeting.chars, { y: -40, rotate: -20, autoAlpha: 0, stagger: 0.04, ease: "back.out(2)" }, "-=0.4")
     // Cada <span> del subtítulo se "enfoca" uno tras otro (stagger = retraso
     // entre ellos). Se usa blur y no "y" porque los <span> son inline y
     // los transform no les afectan.
     .from("#hero h2 > span", { filter: "blur(8px)", autoAlpha: 0, stagger: 0.15 }, "-=0.4")
     // Los botones sociales "saltan" en cascada.
-    .from("#hero nav > *", { y: 20, autoAlpha: 0, scale: 0.8, stagger: 0.1, ease: "back.out(2)" }, "-=0.3");
+    .from("#hero nav > *", { y: 20, autoAlpha: 0, scale: 0.8, stagger: 0.1, ease: "back.out(2)" }, "-=0.3")
+    // Para terminar, la mano saluda: gira de un lado a otro desde la muñeca
+    // (transformOrigin abajo a la derecha). repeat: 5 + yoyo = 6 medios giros
+    // de ida y vuelta, así acaba en su posición original.
+    .to("#wave", { rotate: 20, duration: 0.15, repeat: 5, yoyo: true, ease: "sine.inOut", transformOrigin: "70% 70%" }, "-=0.2");
 
   // Los .from() de arriba ya han puesto el hero en su estado inicial (oculto),
   // así que podemos quitar el "pending" del Layout sin que se vea un parpadeo.

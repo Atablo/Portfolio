@@ -114,8 +114,38 @@ const THEMES = ["Light", "Dark", "System"]
 
   document.querySelectorAll(".themes-menu-option").forEach((element) => {
     element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
-      updateTheme()
+      const applyTheme = () => {
+        localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
+        updateTheme()
+      }
+
+      // Sin soporte de View Transitions (Firefox antiguo) o con "reducir
+      // movimiento" activado, el tema cambia al instante, sin animación.
+      if (
+        !document.startViewTransition ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        applyTheme()
+        return
+      }
+
+      // El círculo nace en el centro del botón del tema...
+      const btn = document.getElementById("theme-toggle-btn").getBoundingClientRect()
+      const x = btn.left + btn.width / 2
+      const y = btn.top + btn.height / 2
+      // ...y crece hasta la esquina más lejana, para cubrir toda la pantalla.
+      const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
+
+      // El navegador hace una "foto" de la página, aplica el tema nuevo y
+      // nos deja animar la transición entre la foto vieja y la nueva.
+      const transition = document.startViewTransition(applyTheme)
+      transition.ready.then(() => {
+        // Recortamos la página nueva con un círculo que va creciendo.
+        document.documentElement.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          { duration: 600, easing: "ease-in-out", pseudoElement: "::view-transition-new(root)" },
+        )
+      })
     })
   })
 

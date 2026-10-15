@@ -36,6 +36,8 @@ const { title, description } = Astro.props;
 		  dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
     </div>
+    <!-- Luz de fondo fija: GSAP cambia su color según la sección (src/scripts/animations.ts) -->
+    <div id="bg-glow" class="pointer-events-none fixed inset-0 z-[-1]" aria-hidden="true"></div>
     <!-- Barra de progreso de scroll: GSAP la estira de 0 a 100% (src/scripts/animations.ts) -->
     <div
       id="scroll-progress"
@@ -79,6 +81,20 @@ const { title, description } = Astro.props;
   html.gsap-pending header,
   html.gsap-pending #hero {
     visibility: hidden;
+  }
+
+  /* --glow es una variable CSS: GSAP la anima y el degradado se recalcula solo */
+  #bg-glow {
+    --glow: rgba(120, 119, 198, 0.2);
+    background: radial-gradient(ellipse 90% 60% at 50% -10%, var(--glow), transparent 70%);
+  }
+
+  /* Cambio de tema con círculo (ThemeToggle): quitamos el fundido por
+     defecto del navegador para que solo se vea nuestro círculo. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
   }
 
   @media (prefers-reduced-motion: reduce) {
