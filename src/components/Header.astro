@@ -4,22 +4,18 @@ import ThemeToggle from "./ThemeToggle.astro"
 const navItems = [
   {
     title: "Experience",
-    label: "experience",
     url: "/#experience",
   },
   {
     title: "Projects",
-    label: "projects",
     url: "/#projects",
   },
   {
     title: "About",
-    label: "About",
     url: "/#about",
   },
   {
     title: "Contact",
-    label: "contact",
     url: "mailto:pabloagb@outlook.es",
   },
 ]
@@ -35,7 +31,6 @@ const navItems = [
       navItems.map((link) => (
         <a
           class="relative block px-2 md:px-8 py-2 transition hover:text-yellow-400 dark:hover:text-yellow-400"
-          aria-label={link.label}
           href={link.url}
         >
           {link.title}
@@ -47,7 +42,9 @@ const navItems = [
 </header>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  // Este portfolio no usa View Transitions, así que "astro:page-load" nunca se
+  // disparaba y el resaltado del menú no funcionaba: se ejecuta directamente.
+  {
     const sections = document.querySelectorAll("section")
     const navItems = document.querySelectorAll("header nav a")
 
@@ -55,7 +52,7 @@ const navItems = [
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
-            if (item.getAttribute("aria-label") == entry.target.id) {
+            if (item.getAttribute("href") === `/#${entry.target.id}`) {
               item.classList.add("text-blue-500")
             } else {
               item.classList.remove("text-blue-500")
@@ -66,9 +63,9 @@ const navItems = [
     }
 
     const observer = new IntersectionObserver(callback, {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.3,
+      // Una línea imaginaria en mitad de la pantalla: la sección que la cruza
+      // es la activa (funciona aunque la sección sea más alta que la ventana).
+      rootMargin: "-50% 0px -50% 0px",
     })
 
     sections.forEach((section) => {
@@ -85,7 +82,7 @@ const navItems = [
         })
       }
     }
-  })
+  }
 </script>
 
 <style>
@@ -101,7 +98,8 @@ const navItems = [
 
   @keyframes nav-shadown {
     0% {
-      @apply dark:bg-gray-800/0 bg-white/0;
+      /* "dark:" no se puede usar dentro de @keyframes (generaba CSS inválido) */
+      background-color: transparent;
     }
     to {
       @apply shadow-lg ring-1 backdrop-blur ring-white/10;

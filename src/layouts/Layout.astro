@@ -16,9 +16,18 @@ const { title, description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image" href="../../img/profilePic.webp" />
+    <link rel="icon" type="image/webp" href="/img/profilePic.webp" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      // Marca la página como "pendiente de animar" antes de pintar nada.
+      // animations.ts quita la clase en cuanto prepara el hero; el timeout es
+      // un seguro por si el JS fallara, para que nunca se quede oculto.
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("gsap-pending");
+        setTimeout(() => document.documentElement.classList.remove("gsap-pending"), 3000);
+      }
+    </script>
   </head>
   <body class="relative text-black dark:text-white">
     <div
@@ -27,84 +36,54 @@ const { title, description } = Astro.props;
 		  dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
     </div>
+    <!-- Barra de progreso de scroll: GSAP la estira de 0 a 100% (src/scripts/animations.ts) -->
+    <div
+      id="scroll-progress"
+      class="fixed top-0 left-0 z-20 h-1 w-full origin-left scale-x-0 bg-gradient-to-r from-amber-400 to-green-400"
+      aria-hidden="true"
+    >
+    </div>
     <Header />
     <slot />
     <Footer />
+    <script>
+      // Astro empaqueta este import y lo carga en el navegador.
+      import "../scripts/animations";
+    </script>
   </body>
 </html>
 <style is:global>
   :root {
-    color-scheme: dark light;
+    color-scheme: light;
+  }
+
+  /* El tema lo decide la clase .dark (ThemeToggle), no solo el sistema */
+  html.dark {
+    color-scheme: dark;
   }
 
   html {
-    font-family: "Onest Variable", system-ui, sans-serif;
+    font-family: "Poppins", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
 
   body {
-    color: rgba(17, 17, 17, 0.9);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     overscroll-behavior: none;
   }
 
+  /* Oculta lo que GSAP va a animar al cargar, para que no se vea un parpadeo
+     del contenido en su sitio final antes de que empiece la animación. */
+  html.gsap-pending header,
+  html.gsap-pending #hero {
+    visibility: hidden;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      color: rgba(255, 255, 255, 0.9);
-    }
-  }
-
-  #header-nav {
-    animation: blur linear both 0.5s;
-    animation-timeline: scroll();
-    animation-range: 0 500px;
-  }
-
-  @keyframes blur {
-    to {
-      backdrop-filter: blur(20px);
-      border-width: 1px;
-      border-color: rgba(0, 0, 0);
-      padding: 0.25rem 0.75rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      background-color: rgb(229, 229, 229);
-      border-radius: 9999px;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    @keyframes blur {
-      from {
-        border: 0px;
-      }
-      to {
-        box-shadow:
-          0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-          0px 0px 0 1px rgba(0, 0, 0, 0.3);
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(20px);
-        border-width: 1px;
-        border-color: rgba(0, 0, 0);
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.3);
-        border-radius: 9999px;
-      }
     }
   }
 </style>

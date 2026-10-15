@@ -29,7 +29,14 @@ const EXPERIENCE = [
 ];
 ---
 
-<ol class="relative border-s border-amber-600 dark:border-amber-200 ml-3">
+<ol class="relative ml-3">
+  <!-- Línea vertical del timeline: GSAP la "dibuja" con scaleY al hacer scroll (src/scripts/animations.ts) -->
+  <div
+    id="experience-line"
+    class="absolute -left-px top-0 h-full w-px origin-top bg-amber-600 dark:bg-amber-200"
+    aria-hidden="true"
+  >
+  </div>
   {
     EXPERIENCE.map((experience) => (
       <li class="mb-10 ms-4">

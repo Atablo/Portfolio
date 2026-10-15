@@ -10,9 +10,10 @@ const THEMES = ["Light", "Dark", "System"]
   <button
     transition:persist
     id="theme-toggle-btn"
+    aria-haspopup="true"
     class="appearance-none border-none flex hover:scale-125 transition"
   >
-    <span class="sr-only">Elige el tema</span>
+    <span class="sr-only">Choose theme</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" hover="text-yellow-400" />
     <MoonIcon
       id="dark"
@@ -32,8 +33,10 @@ const THEMES = ["Light", "Dark", "System"]
     <ul>
       {
         THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-gray-100 dark:hover:bg-gray-500/50 rounded-sm">
-            {theme}
+          <li>
+            <button class="themes-menu-option w-full text-left px-2 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-500/50 rounded-sm">
+              {theme}
+            </button>
           </li>
         ))
       }

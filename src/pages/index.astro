@@ -17,12 +17,12 @@ import Badge from "../components/Badge.astro";
 <Layout
   title="Pablo | Web Developer"
   description="Personal portfolio of Pablo Atahonero, a web developer focused on frontend development, Angular, TypeScript and accessible web experiences."
-  ><main class="px-4">
-    <SectionContainer class="pt-32 pb-24">
+  ><main class="px-4 overflow-x-clip">
+    <SectionContainer id="hero" class="pt-32 pb-24">
       <div class="flex items-center gap-x-6">
         <img
           src="/img/profilePic.webp"
-          alt="Foto de Pablo"
+          alt="Photo of Pablo"
           class="rounded-full size-16 mb-3"
         />
         <a
@@ -79,12 +79,11 @@ import Badge from "../components/Badge.astro";
 
       <Projects />
     </SectionContainer>
-    <SectionContainer>
+    <SectionContainer id="about">
       <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
-        <PersonIcon class="size-7" />About me<h2>
-          <About />
-        </h2>
+        <PersonIcon class="size-7" />About me
       </h2>
+      <About />
     </SectionContainer>
   </main></Layout
 >
